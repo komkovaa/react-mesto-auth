@@ -1,6 +1,6 @@
 import React from "react";
 import api from "../utils/Api";
-import Headers from './Header';
+import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import ImagePopup from "./ImagePopup";
@@ -185,17 +185,16 @@ function App() {
   function handleRegister(email, password) {
     return auth.register(email, password)
       .then(() => {
-        setIsInfoTooltipOpen(true);
         setMessage({ message: 'Вы успешно зарегистрировались!' });
         setImage({ image: Success });
         history.push('/signin');
       })
       .catch(err => {
         console.log(err);
-        setIsInfoTooltipOpen(true);
         setMessage({ message: 'Что-то пошло не так! Попробуйте ещё раз.' });
         setImage({ image: Fail });
-      });
+      })
+      .finally(() => {setIsInfoTooltipOpen(true)})
   }
 
   function tokenCheck() {
@@ -208,7 +207,8 @@ function App() {
       setIsLoading(false);
       setProfileEmail(data.data.email);
       history.push("/");
-    });
+    })
+    .catch((err) => {console.log(err)});
   };
 
   function handleLogout() {
@@ -224,7 +224,7 @@ function App() {
     // Мы передаём "currentUser" в качестве значения контекста.
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Headers
+        <Header
           loggedIn={loggedIn}
           email={profileEmail}
           onLogout={handleLogout}

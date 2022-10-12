@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../images/Logo.svg';
 import { Link, Route } from "react-router-dom";
 
-function Headers(props) {
+function Header(props) {
   return (
     <header className="header">
       <img className="logo" src={logo} alt="логотип" />
@@ -26,4 +26,4 @@ function Headers(props) {
   );
 }
 
-export default Headers;
+export default Header;
