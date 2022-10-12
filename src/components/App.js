@@ -31,7 +31,7 @@ function App() {
   //стейт для данных из Api
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
-  const [cardDelete, setCardDelete] = useState([]);
+  const [cardDelete, setCardDelete] = useState({ name: '', link: '' });
   const [isLoading, setIsLoading] = useState(true);
 
   //стейт для авторизации
@@ -82,10 +82,10 @@ function App() {
       .then((newCard) => {
         const newArr = cards.filter(c => c._id === cardDelete._id ? !newCard : c);
         setCards(newArr);
-        setIsLoading(false);
         closeAllPopups();
       })
       .catch((err) => console.log(err))
+      .finally(() => {setIsLoading(false)})
   }
 
   function handleCardDelete(card) {
