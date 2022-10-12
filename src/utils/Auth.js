@@ -34,8 +34,8 @@ export const authorize = (email, password) => {
         data: { email, password }
     });
 };
-// функция проверяет токены авторизованных польователей, которые вернулись в приложение
-export const getContent = (token) => {
+// функция проверяет токены авторизованных пользователей, которые вернулись в приложение
+export const checkToken = (token) => {
     return request({
         url: '/users/me',
         method: 'GET',

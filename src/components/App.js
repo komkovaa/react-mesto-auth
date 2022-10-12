@@ -15,7 +15,7 @@ import InfoTooltip from "./InfoTooltip";
 import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
-import * as auth from '../auth.js';
+import * as auth from '../utils/Auth.js';
 import Fail from "../images/Fail.svg";
 import Success from "../images/Success.svg";
 
@@ -206,7 +206,7 @@ function App() {
 
     if (!jwt) return;
 
-    auth.getContent(jwt).then((data) => {
+    auth.checkToken(jwt).then((data) => {
       setLoggedIn(true);
       setIsLoading(false);
       setProfileEmail(data.data.email);
