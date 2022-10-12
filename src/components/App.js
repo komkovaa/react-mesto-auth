@@ -107,6 +107,26 @@ function App() {
     setSelectedCard({ name: '', link: '' });
   }
 
+  //Закрытие попапа по Escape
+  //Создаем переменную isOpen снаружи useEffect, в которой следим за всеми состояниями попапов. Если хоть одно состояние true или не null, 
+  //то какой-то попап открыт, значит, навешивать нужно обработчик.
+  const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard.link ||  isPopupWithConfirmOpen || isInfoTooltipOpen
+
+  //Объявляем функцию внутри useEffect, чтобы она не теряла свою ссылку при обновлении компонента.
+  useEffect(() => {
+    function closeByEscape(evt) {
+      if(evt.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+    if(isOpen) { // навешиваем только при открытии
+      document.addEventListener('keydown', closeByEscape);
+      return () => {
+        document.removeEventListener('keydown', closeByEscape);
+      }
+    }
+  }, [isOpen]) 
+  
   function handleCardClick(res) { setSelectedCard(res) }
 
   function handleUpdateUser(data) {
