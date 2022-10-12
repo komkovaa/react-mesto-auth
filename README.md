@@ -14,4 +14,4 @@
 
 Все запросы на авторизацию, регистрацию и проверку токена работают через сервис `https://auth.nomoreparties.co`. 
 
-![Mesto](https://komkovaa.github.io/react-mesto-auth/)
+*[Mesto](https://komkovaa.github.io/react-mesto-auth/)
