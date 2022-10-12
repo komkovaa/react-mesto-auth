@@ -8,8 +8,15 @@ function PopupWithConfirm(props) {
     }
 
     return (
-        <PopupWithForm name='confirm' title='Вы уверены?' button='Да' buttonText='Удаление...' isOpen={props.isOpen} onClose={props.onClose} onSubmit={handleSubmit} isLoading={props.isLoading}>
-        </PopupWithForm>
+        <PopupWithForm
+            name='confirm'
+            title='Вы уверены?'
+            button='Да'
+            buttonText='Удаление...'
+            isOpen={props.isOpen}
+            onClose={props.onClose}
+            onSubmit={handleSubmit}
+            isLoading={props.isLoading} />
     )
 }
 
