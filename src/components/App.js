@@ -39,6 +39,7 @@ function App() {
   const [profileEmail, setProfileEmail] = useState('');
   const [message, setMessage] = useState('');
   const [image, setImage] = useState('');
+  const [alt, setAlt] = useState('');
 
   const history = useHistory();
 
@@ -179,6 +180,7 @@ function App() {
         setIsInfoTooltipOpen(true);
         setMessage({ message: 'Что-то пошло не так! Попробуйте ещё раз.' });
         setImage({ image: Fail });
+        setAlt({alt: 'Ошибка'});
       });
   };
 
@@ -187,12 +189,14 @@ function App() {
       .then(() => {
         setMessage({ message: 'Вы успешно зарегистрировались!' });
         setImage({ image: Success });
+        setAlt({alt: 'Успешно'});
         history.push('/signin');
       })
       .catch(err => {
         console.log(err);
         setMessage({ message: 'Что-то пошло не так! Попробуйте ещё раз.' });
         setImage({ image: Fail });
+        setAlt({alt: 'Ошибка'});
       })
       .finally(() => {setIsInfoTooltipOpen(true)})
   }
@@ -265,7 +269,7 @@ function App() {
 
         <PopupWithConfirm isOpen={isPopupWithConfirmOpen} onClose={closeAllPopups} onSubmit={handleConfirmCardDelete} isLoading={isLoading} />
 
-        <InfoTooltip isOpen={isInfoTooltipOpen} onClose={closeAllPopups} onMessage={message} onImage={image}/>
+        <InfoTooltip isOpen={isInfoTooltipOpen} onClose={closeAllPopups} onMessage={message} onImage={image} onAlt={alt}/>
       </div>
     </CurrentUserContext.Provider >
   );
